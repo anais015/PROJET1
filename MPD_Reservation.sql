@@ -59,39 +59,39 @@ ADD CONSTRAINT fk_salle_tarif FOREIGN KEY(ref_tarif) REFERENCES Tarif(id_tarif);
 
 /*insert*/
 
-INSERT INTO film
+INSERT INTO film (titre, annee, description)
 VALUES ('Sonic le film', '2020', 'Un film avec Sonic');
 
-INSERT INTO film
+INSERT INTO film (titre, annee, description)
 VALUES ('PIXELS', '2015', 'Pour les vrais gamers');
 
-INSERT INTO film
+INSERT INTO film (titre, annee, description)
 VALUES ('Le seigneur des anneaux', '2001', 'The lord of the ring');
 
-INSERT INTO film
+INSERT INTO film (titre, annee, description)
 VALUES ('Le hobbit', '2012', 'Petit mais costaud');
 
-INSERT INTO film
+INSERT INTO film (titre, annee, description)
 VALUES ('Les Tuches', '2011', 'La Famille de Bouzolles');
 
-INSERT INTO salle
+INSERT INTO salle (nom, nb_place)
 VALUES ('Rouge', '30');
 
-INSERT INTO salle
+INSERT INTO salle (nom, nb_place)
 VALUES ('Bleue', '60');
 
-INSERT INTO salle
+INSERT INTO salle (nom, nb_place)
 VALUES ('Jaune', '120');
 
-INSERT INTO salle
+INSERT INTO salle (nom, nb_place)
 VALUES ('Vert', '60');
 
-INSERT INTO salle
+INSERT INTO salle (nom, nb_place)
 VALUES ('Blanc', '120');
 
-INSERT INTO tarif
+INSERT INTO tarif (nom, prix, description)
 VALUES ('Tarif jeune', '5', 'Pour les enfants, jeunes et étudiants');
 
-INSERT INTO tarif
+INSERT INTO tarif (nom, prix, description)
 VALUES ('Tarif Adulte', '10', 'Pour Adulte');
 
