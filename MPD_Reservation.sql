@@ -6,7 +6,7 @@ nom varchar(50) NOT NULL,
 prenom varchar(50) NOT NULL,
 email varchar(50) NOT NULL,
 password varchar(50) NOT NULL,
-role varchar(50) NOTADMIN, 
+role varchar(50) DEFAULT 'NOTADMIN',
 ref_tarif int(11) NULL,
 primary key (id_client)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -42,7 +42,7 @@ payment varchar(50) NOT NULL,
 date_reservation date NOT NULL,
 ref_salle int(11) NOT NULL,
 ref_client int(11) NOT NULL,
-primary key (ref_salle,ref_client)
+primary key (id_reservation)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*ajouter foreign key*/
