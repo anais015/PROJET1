@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+<?php
+session_start();
+
+$bdd = new PDO('mysql:host=localhost;dbname=ale_hme_cinema;charset=utf8',
+    'root', '');
+
+$req = $bdd->prepare('SELECT * FROM client WHERE email = :email');
+$req->execute(array(
+    'email'=>$_SESSION['email'],
+));
+$res = $req->fetch();
+$email = $res ['email'];
+$nom = $res ['nom'];
+$prenom = $res ['prenom'];
+?>
 <html lang="en">
 
 <head>
@@ -27,7 +42,7 @@
 </head>
 
 <body>
-<form method="post" action="traitement_inscription.php">
+<form method="POST" action="">
     <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
         <div class="wrapper wrapper--w780">
             <div class="card card-3">
@@ -35,22 +50,22 @@
                 <div class="card-body">
                     <h2 class="title">Modification</h2>
                     <div class="input-group">
-                        <input class="input--style-3" type="text" placeholder="Votre nom" name="nom">
+                        <input class="input--style-3" type="text" value="<?php echo $nom; ?>" name="nom">
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="text" placeholder="Votre prenom" name="prenom">
+                        <input class="input--style-3" type="text" value="<?php echo $prenom; ?>" name="prenom">
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="email" placeholder="Votre email" name="email">
+                        <input class="input--style-3" type="email" value="<?php echo $email; ?>" name="email">
                     </div>
                     <div class="input-group">
-                        <input class="input--style-3" type="password" placeholder="Votre Mot de passe" name="password">
+                        <input class="input--style-3" type="password" placeholder="password" name="password">
                     </div>
                     <div class="p-t-10">
-                        <button class="btn btn--pill btn--green" type="submit">Valider</button>
+                        <button class="btn btn--pill btn--green" type="submit" name="valider">Valider</button>
                     </div>
                     <div class="p-t-10">
-                        <button class="btn btn--pill btn--green" type="reset">Effacer</button>
+                        <button class="btn btn--pill btn--green" type="reset" name="effacer">Effacer</button>
                     </div>
 </form>
 </div>
@@ -72,3 +87,29 @@
 
 </html>
 <!-- end document-->
+<?php
+if(isset($_POST['valider'])){
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $req = $bdd->prepare('UPDATE client SET nom=:nom, prenom=:prenom, email=:email, password=:password');
+    $req_exe = $req->execute(array(
+        'nom'=>$nom,
+        'prenom'=>$prenom,
+        'email'=>$email,
+        'password'=>$password
+    ));
+    if ($req_exe){
+        header('Location:index_logout.php');
+        echo '<script>alert("Updated")</script>';
+    }
+    else {
+        echo '<script>alert("Not Updated")</script>';
+        header('Location: update_user_form.php');
+    }
+
+}
+
+?>

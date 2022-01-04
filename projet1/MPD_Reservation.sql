@@ -35,6 +35,7 @@ primary key (id_tarif)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE Reservation(
+id_reservation
 ref_salle int(11) NOT NULL,
 ref_client int(11) NOT NULL,
 primary key (ref_salle,ref_client)
